@@ -33,12 +33,13 @@ class Visit(models.Model):
 
 def get_visit_duration(visit):
     if visit.leaved_at:
-        visit_duration = visit.leaved_at - visit.enterned_at
+        visit_duration = visit.leaved_at - visit.entered_at
         return visit_duration
     else:
         print(visit.entered_at, timezone.now())
         visit_duration = timezone.now() - visit.entered_at
         return visit_duration
+
 
 def format_duration(timedelta):
     total_seconds = timedelta.total_seconds()
@@ -46,3 +47,11 @@ def format_duration(timedelta):
     minutes = (total_seconds % 3600) // 60
     seconds = total_seconds % 60
     return f'{int(hours)}:{int(minutes)}:{int(seconds)}'
+
+
+def is_visit_suspicious(timedelta):
+    total_seconds = timedelta.total_seconds()
+    if total_seconds > 3600:
+        return True
+    else:
+        return False

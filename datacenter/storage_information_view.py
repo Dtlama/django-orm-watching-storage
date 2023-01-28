@@ -5,7 +5,6 @@ from django.utils import timezone
 
 
 def storage_information_view(request):
-    # Программируем здесь
     visits = Visit.objects.filter(leaved_at=None)
     non_closed_visits = []
 
@@ -13,7 +12,7 @@ def storage_information_view(request):
         non_closed_visit = {
             'who_entered': visit.passcard.owner_name,
             'entered_at': visit.entered_at,
-            'duration': format_duration(get_visit_duration(visits[0])),
+            'duration': format_duration(get_visit_duration(visit)),
             }
         non_closed_visits.append(non_closed_visit)
 
