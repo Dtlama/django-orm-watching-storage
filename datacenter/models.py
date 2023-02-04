@@ -46,7 +46,4 @@ def format_duration(timedelta):
 
 def is_visit_suspicious(timedelta):
     total_seconds = timedelta.total_seconds()
-    if total_seconds > 3600:
-        return True
-    else:
-        return False
+    return total_seconds > 3600
