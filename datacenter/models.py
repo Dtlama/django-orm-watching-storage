@@ -32,13 +32,8 @@ class Visit(models.Model):
 
 
 def get_visit_duration(visit):
-    if visit.leaved_at:
-        visit_duration = visit.leaved_at - visit.entered_at
-        return visit_duration
-    else:
-        print(visit.entered_at, timezone.now())
-        visit_duration = timezone.now() - visit.entered_at
-        return visit_duration
+    visit_duration = timezone.localtime(visit.leaved_at) - visit.entered_at
+    return visit_duration
 
 
 def format_duration(timedelta):
