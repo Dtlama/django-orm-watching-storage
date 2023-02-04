@@ -5,7 +5,7 @@ from django.utils import timezone
 
 
 def storage_information_view(request):
-    visits = Visit.objects.filter(leaved_at=None)
+    visits = Visit.objects.filter(leaved_at__isnull=True)
     non_closed_visits = []
 
     for visit in visits:
